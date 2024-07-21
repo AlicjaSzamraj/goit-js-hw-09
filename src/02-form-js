@@ -1,9 +1,14 @@
 const form = document.querySelector('form.feedback-form');
+const emailField = form.elements.email;
+const messageField = form.elements.message;
 
-form.addEventListener('input', ev => {
+emailField.addEventListener('input', saveFormData);
+messageField.addEventListener('input', saveFormData);
+
+function saveFormData() {
   const data = {
-    email: ev.target.elements.email.value,
-    message: ev.target.elements.message.value,
+    email: emailField.value,
+    message: messageField.value,
   };
   localStorage.setItem('feedback-form-state', JSON.stringify(data));
-});
+}
