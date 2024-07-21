@@ -33,9 +33,15 @@ main();
 
 const lightbox = new SimpleLightbox('ul.gallery li a', {
   captionType: 'alt',
-  sourceAtrr: 'href',
+  sourceAttr: 'href',
   overlay: true,
 });
 lightbox.on('show.simplelightbox', function () {
   console.log('lightbox on');
+  setTimeout(() => {
+    const caption = document.querySelector('.sl-caption');
+    if (caption) {
+      caption.style.display = 'block';
+    }
+  }, 250); // 250 milliseconds delay
 });
