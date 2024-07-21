@@ -1,5 +1,6 @@
 import SimpleLightbox from 'simplelightbox';
 import { images } from './images';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const createImage = ({ preview, original, description }) => {
   const li = document.createElement('li');
@@ -10,6 +11,7 @@ const createImage = ({ preview, original, description }) => {
     class="gallery-image"
     src="${preview}"
     alt="${description}"
+    title="${description}"
     />
     </a>`;
   return li;
@@ -29,6 +31,11 @@ const main = () => {
 
 main();
 
-const lightbox = new SimpleLightbox('ul.gallery li', {
+const lightbox = new SimpleLightbox('ul.gallery li a', {
   captionType: 'alt',
+  sourceAtrr: 'href',
+  overlay: true,
+});
+lightbox.on('show.simplelightbox', function () {
+  console.log('lightbox on');
 });
