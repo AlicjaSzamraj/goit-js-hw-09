@@ -18,11 +18,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  form.addEventListener('submit', ev => {
+  form.addEventListener('submit', (ev) => {
     ev.preventDefault();
+    const email = form.elements.email.value;
+    const message = form.elements.message.value;
+
+    if (!email || !message) {
+      alert('Proszę wypełnić oba pola formularza.');
+      return;
+    }
+
     const data = {
-      email: form.elements.email.value,
-      message: form.elements.message.value,
+      email: email,
+      message: message,
     };
     console.log(data);
     localStorage.removeItem('feedback-form-state');
